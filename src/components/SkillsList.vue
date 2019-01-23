@@ -14,12 +14,12 @@
       <transition-group name="list" enter-active-class="animated bounceInUp" leave-active-class="animated bounceOutDown">
         <li v-for="(data, index) in skills" :key='data.skill'>
           {{ data.skill }}
-          <i class="fa fa-minus-circle" v-on:click="remove(index)"></i>  
+          <i class="fa fa-minus-circle" v-on:click="remove(index)"></i>
         </li>
       </transition-group>
 
     </ul>
-
+    <i class="fa" v-bind:class="{'fa-minus-circle': minus, 'fa-plus-circle': !minus}" v-on:click="toggle"></i>
   </div>
 </div>
 </template>
@@ -28,6 +28,7 @@
 export default {
   data() {
     return {
+      minus: true,
       newSkill: '',
       skills: [{
           "skill": "Front-end Developer"
@@ -56,6 +57,9 @@ export default {
     },
     remove(id) {
       this.skills.splice(id, 1);
+    },
+    toggle() {
+      this.minus = this.minus === true ? false : true;
     }
   }
 }
@@ -107,6 +111,7 @@ input {
   background-color: #323333;
   color: #687F7F;
 }
+
 .alert-container {
   height: 0;
 }

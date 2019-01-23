@@ -2,7 +2,7 @@
   <div class="layout">
     <header class="header">
       <strong>
-        <g-link :to="{ name: 'home' }"><g-image alt="Example image" src="~/assets/LifeIQ v1.svg" width="55" /></g-link>
+        <g-link :to="{ name: 'home' }"><g-image alt="Example image" src="~/assets/LifeIQ v1.9.svg" width="75" /></g-link>
       </strong>
       <nav class="nav">
         <g-link class="nav__link" :to="{ name: 'home' }">Home</g-link>
