@@ -2,10 +2,8 @@
 <Layout>
   
   <h1>Calculate</h1>
-
-  <OperatorSelect />
   <VButton />
-
+  <InputIQ />
   <div class="operation-confirm">
     <p>Operation: <span style="color: white;">{{ operationName }}</span></p>
   </div>
@@ -25,13 +23,15 @@
 import InputWidget from './../components/InputWidget';
 import OperatorSelect from './../components/OperatorSelect';
 import VButton from './../components/VButton';
+import InputIQ from './../components/InputIQ';
 
 
 export default {
   components: {
     InputWidget,
     OperatorSelect,
-    VButton
+    VButton,
+    InputIQ
   },
   data: function () {
     return {

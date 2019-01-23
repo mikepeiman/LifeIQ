@@ -1,16 +1,16 @@
 <template>
   <div class="operation-select grid-container-4">
     <label for="add">
-      <input type="radio" id="add" value="Add" value2="+" v-model="operationName" @click="setOperator">
+      <input type="radio" id="add" value="=" v-model="operationName" @click="setOperator">
     Add</label>
     <label for="subtract">
-      <input type="radio" id="subtract" value="Subtract" value2="-" v-model="operationName" @click="setOperator">
+      <input type="radio" id="subtract" value="-" v-model="operationName" @click="setOperator">
     Subtract</label>
     <label for="multiply">
-      <input type="radio" id="multiply" value="Multiply" value2="*" v-model="operationName" @click="setOperator">
+      <input type="radio" id="multiply" value="*" v-model="operationName" @click="setOperator">
     Multiply</label>
     <label for="divide">
-      <input type="radio" id="divide" value="Divide" value2="/" v-model="operationName" @click="setOperator">
+      <input type="radio" id="divide" value="/" v-model="operationName" @click="setOperator">
     Divide</label>
   </div>
 
@@ -20,11 +20,24 @@
 export default {
   data: function () {
     return {
-
+      operator: ''
     }
   },
-  props: {
-    operator: String
+  methods: {
+        setOperator() {
+      if (this.operationName == "Add") {
+        this.operator = "+";
+      }
+      if (this.operationName == "Subtract") {
+        this.operator = "-";
+      }
+      if (this.operationName == "Multiply") {
+        this.operator = "*";
+      }
+      if (this.operationName == "Divide") {
+        this.operator = "/";
+      }
+    }
   }
 }
 </script>
