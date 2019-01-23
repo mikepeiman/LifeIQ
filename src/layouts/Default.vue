@@ -1,26 +1,54 @@
 <template>
-  <div class="layout">
-    <header class="header">
-      <strong>
+<div class="layout">
+  <header class="header">
+    <strong>
         <g-link :to="{ name: 'home' }"><g-image alt="Example image" src="~/assets/LifeIQ v1.9.svg" width="75" /></g-link>
       </strong>
-      <nav class="nav">
-        <g-link class="nav__link" :to="{ name: 'home' }">Home</g-link>
-        <g-link class="nav__link" :to="{ name: 'about' }">About</g-link>
-        <g-link class="nav__link" :to="{ name: 'skills' }">Skills</g-link>
-      </nav>
-    </header>
-    <slot/>
-  </div>
+    <nav class="nav">
+      <g-link class="nav__link" :to="{ name: 'home' }">Home</g-link>
+      <g-link class="nav__link" :to="{ name: 'about' }">About</g-link>
+      <g-link class="nav__link" :to="{ name: 'skills' }">Skills</g-link>
+      <i class="fas" v-bind:class="{'fa-sun': !dark, 'fa-moon': dark}" v-on:click="toggle"></i>
+    </nav>
+  </header>
+  <slot />
+</div>
 </template>
+
+<script>
+export default {
+  data() {
+    return {
+      dark: false,
+      body: ''
+    }
+  },
+  methods: {
+    toggle() {
+      this.dark = this.dark === false ? true : false;
+      this.body = document.getElementById('custom-body-id')
+      this.body.classList.toggle('app-dark-mode')
+    }
+  }
+}
+</script>
 
 <style>
 @import url('https://fonts.googleapis.com/css?family=Montserrat');
+@import "https://use.fontawesome.com/releases/v5.6.3/css/all.css";
 
+.app-dark-mode {
+  background: #282222;
+  color: #00a1ff;
+}
+.app-mode-light {
+  background: white;
+  color: #111111;
+}
 body {
-  font-family: 'Montserrat',-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
-  margin:0;
-  padding:0;
+  font-family: 'Montserrat', -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  margin: 0;
+  padding: 0;
   line-height: 1.5;
 }
 
@@ -42,5 +70,11 @@ body {
 .nav__link {
   margin-left: 20px;
   text-decoration: none;
+  color: #00a1ff;
+}
+
+.nav i {
+  margin-left: 3em;
+  color: #00a1ff;
 }
 </style>

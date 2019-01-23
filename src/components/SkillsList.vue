@@ -19,7 +19,7 @@
       </transition-group>
 
     </ul>
-    <i class="fa" v-bind:class="{'fa-minus-circle': minus, 'fa-plus-circle': !minus}" v-on:click="toggle"></i>
+    
   </div>
 </div>
 </template>
@@ -58,9 +58,6 @@ export default {
     remove(id) {
       this.skills.splice(id, 1);
     },
-    toggle() {
-      this.minus = this.minus === true ? false : true;
-    }
   }
 }
 </script>
