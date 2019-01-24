@@ -1,37 +1,23 @@
 <template>
 <Layout>
-  
+
   <h1>Calculate</h1>
-  <VButton />
-  <InputIQ />
-  <div class="operation-confirm">
-    <p>Operation: <span style="color: white;">{{ operationName }}</span></p>
-  </div>
+  <InputOperation :operator="operator" />
+  <!-- <button @click="logProps" class="v-button">click to log props</button> -->
 
-  <div class="grid-container-2">
-    <InputWidget />
-  </div>
-
-  <div class="input-widget-wrapper result">
-    <p>Calculate {{ operationName }}: {{ A }} {{ operator }} {{ B }} = {{ result }}</p>
-
-  </div>
 </Layout>
 </template>
 
 <script>
 import InputWidget from './../components/InputWidget';
-import OperatorSelect from './../components/OperatorSelect';
 import VButton from './../components/VButton';
-import InputIQ from './../components/InputIQ';
-
+import InputOperation from './../components/InputOperation';
 
 export default {
   components: {
     InputWidget,
-    OperatorSelect,
     VButton,
-    InputIQ
+    InputOperation
   },
   data: function () {
     return {
@@ -43,59 +29,13 @@ export default {
     }
   },
   methods: {
-    calculateResult: function () {
-      if (this.operationName == "Add") {
-        // this.setOperator();
-        this.result = Number(this.A) + Number(this.B);
-      } else if (this.operationName == "Subtract") {
-        // this.setOperator();
-        this.result = Number(this.A) - +Number(this.B);
-      } else if (this.operationName == "Multiply") {
-        // this.setOperator();
-        this.result = Number(this.A) * +Number(this.B);
-      } else if (this.operationName == "Divide") {
-        // this.setOperator();
-        this.result = Float(Number(this.A) / Number(this.B), 2);
-      } else {
-        this.result = ''
-      }
+    onClickInputOperation(value) {
+      console.log(value)
     },
-    setOperator: function () {
-      if (this.operationName == "Add") {
-        this.operator = "+";
-        this.calculateResult();
-      }
-      if (this.operationName == "Subtract") {
-        this.operator = "-";
-        this.calculateResult();
-      }
-      if (this.operationName == "Multiply") {
-        this.operator = "*";
-        this.calculateResult();
-      }
-      if (this.operationName == "Divide") {
-        this.operator = "/";
-        this.calculateResult();
-      }
+    logProps() {
+      console.log(InputOperation.props)
     }
-  },
-  // computed: {
-  //   operator: function() {
-  //     let result = 0;
-  //           if (this.operationName == "Add") {
-  //       this.operator = "+";
-  //     }
-  //     if (this.operationName == "Subtract") {
-  //       this.operator = "-";
-  //     }
-  //     if (this.operationName == "Multiply") {
-  //       this.operator = "*";
-  //     }
-  //     if (this.operationName == "Divide") {
-  //       this.operator = "/";
-  //     }
-  //   }
-  // }
+  }
 }
 </script>
 

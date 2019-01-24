@@ -27,7 +27,7 @@ export default {
 }
 </script>
 
-<style scoped>
+<style>
 .v-button {
   padding: .5em;
   border: 3px solid rgba(0,100,250,0.6);
