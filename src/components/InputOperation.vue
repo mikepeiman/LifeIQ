@@ -2,7 +2,7 @@
 <div class="component-wrapper">
   <div class="operation-select grid-container-4" v-for="operation in operations">
     <label :for="operation.name"  class="radio" >
-      <input @click="calculateResult" type="radio" :id="operation.name" name="operation" :value="operation" v-model="selectedOperation">
+      <input type="radio" :id="operation.name" name="operation" :value="operation" v-model="selectedOperation">
       {{ operation.name }}</label>
   </div>
 <!-- 
@@ -16,11 +16,11 @@
   </p>
 
   <div class="input-widget-wrapper grid-container-2">
-    <label for="input-a">Enter a number
-      <input type="number" class="input-widget input" id="inputA" name="input-a" v-model="A" v-on:keyup="calculateResult">
+    <label for="inputA">Enter a number
+      <input type="number" class="input-widget input" id="inputA" name="input-a" v-model="A">
     </label>
-    <label for="input-b">Enter another number
-      <input type="number" class="input-widget input" id="inputB" name="input-b" v-model="B" v-on:keyup="calculateResult">
+    <label for="inputB">Enter another number
+      <input type="number" class="input-widget input" id="inputB" name="input-b" v-model="B">
     </label>
   </div>
 
@@ -35,9 +35,7 @@ export default {
   data() {
     return {
       e: '',
-      operation: '',
       selectedOperation: '',
-      selectedOperations: [],
       operations: [{
           name: 'Add',
           symbol: '+'
@@ -57,46 +55,29 @@ export default {
       ],
       A: '',
       B: '',
-      result: 0 ? 0 : this.calculateResult()
+      calculatedResult: ''
     }
   },
-  methods: {
-    calculateResult($event) {
-      console.log('calculateResult method called')
-      setTimeout(() => {
-              console.log('beginning setTimeout function')
+  computed: {
+    result() {
       switch (this.selectedOperation.name) {
-        case "Add": this.result = Number(this.A) + Number(this.B);
-        console.log(this.selectedOperation.name, this.result, $event.timestamp, $event.path);
+        case "Add": return this.calculatedResult = Number(this.A) + Number(this.B);
         break;
-        case "Subtract": this.result =  Number(this.A) - Number(this.B);
-        console.log(this.selectedOperation.name, this.result, $event.timestamp, $event.path);
+        case "Subtract": return this.calculatedResult =  Number(this.A) - Number(this.B);
         break;
-        case "Multiply": this.result =  Number(this.A) * Number(this.B);
-        console.log(this.selectedOperation.name, this.result, $event.timestamp, $event.path) ;
+        case "Multiply": return this.calculatedResult =  Number(this.A) * Number(this.B);
         break;
         case "Divide": 
-        this.result = Number(this.A) / Number(this.B);
-        if (!Number.isInteger(this.result)) {
-          this.result = (Number(this.A) / Number(this.B)).toFixed(2);
+        this.calculatedResult = Number(this.A) / Number(this.B);
+        if (!Number.isInteger(this.calculatedResult)) {
+          return this.calculatedResult = (Number(this.A) / Number(this.B)).toFixed(2);
+        } else {
+          return this.calculatedResult
         }
-        // this.result = isInteger(this.result) ? this.result : (Number(this.A) / Number(this.B)).toFixed(2);
-        console.log(this.selectedOperation.name, this.result, $event.timestamp, $event.path);
         break;
       }
-      }, 10);
-
-
     }
-    // setOperator(event) {
-    //   this.selectedOperation = event.target.value
-    //   console.log("From component InputOperation.vue: ", this.selectedOperation)
-    // }
-  },
-  // props: [
-  //   'selectedOperation'
-  // ],
-  computed: {}
+  }
 }
 </script>
 
