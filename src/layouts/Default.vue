@@ -8,6 +8,7 @@
       <g-link class="nav__link" :to="{ name: 'home' }">Home</g-link>
       <g-link class="nav__link" :to="{ name: 'about' }">About</g-link>
       <g-link class="nav__link" :to="{ name: 'skills' }">Skills</g-link>
+      <g-link class="nav__link" :to="{ name: 'radial-menu' }">Radial Menu</g-link>
       <i class="fas" v-bind:class="{'fa-sun': !dark, 'fa-moon': dark}" v-on:click="toggle"></i>
     </nav>
   </header>

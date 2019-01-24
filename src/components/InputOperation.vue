@@ -1,10 +1,15 @@
 <template>
 <div class="component-wrapper">
-  <div class="operation-select grid-container-4" v-for="operation in operations">
-    <label :for="operation.name"  class="radio" >
-      <input type="radio" :id="operation.name" name="operation" :value="operation" v-model="selectedOperation">
+  <!-- <div class="operation-select grid-container-4 radio-toolbar" v-for="operation in operations">
+    <label :for="operation.name" class="radio" >
+      <input type="radio" :id="operation.name" :checked="isChecked" name="operation" v-model="selectedOperation">
+      <i class="fas fa-plus-circle"></i>
       {{ operation.name }}</label>
+  </div> -->
+  <div class="radial-menu-container">
+    
   </div>
+  
 <!-- 
   <select v-model="selectedOperation" single>
     <option v-for="operation in operations" v-bind:value="operation.symbol" selected="selected">
@@ -15,12 +20,13 @@
     <span>Selected operation: {{ selectedOperation.name }}</span>
   </p>
 
-  <div class="input-widget-wrapper grid-container-2">
+  <div class="input-widget-wrapper grid-container-3 flex">
     <label for="inputA">Enter a number
-      <input type="number" class="input-widget input" id="inputA" name="input-a" v-model="A">
+      <input tabindex="1" type="number" class="input-widget input" id="inputA" name="input-a" v-model="A">
     </label>
+    <RadialMenu tabindex="2" />
     <label for="inputB">Enter another number
-      <input type="number" class="input-widget input" id="inputB" name="input-b" v-model="B">
+      <input tabindex="3" type="number" class="input-widget input" id="inputB" name="input-b" v-model="B">
     </label>
   </div>
 
@@ -31,10 +37,14 @@
 </template>
 
 <script>
+import RadialMenu from '.././components/RadialMenu';
 export default {
+  components: {
+    RadialMenu
+  },
   data() {
     return {
-      e: '',
+      isChecked: false,
       selectedOperation: '',
       operations: [{
           name: 'Add',
@@ -82,6 +92,10 @@ export default {
 </script>
 
 <style scoped>
+
+.radial-menu-container {
+  display: flex;
+}
 .radio {
   cursor: pointer;
 }
@@ -93,12 +107,18 @@ export default {
   padding: .5em;
 }
 
-.grid-container-4 {
+/* .grid-container-3 {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: 45% 10% 45%;
   grid-auto-rows: 1;
+} */
+.flex {
+  display: flex;
+  justify-content: center;
+  justify-items: center;
+  align-content: space-around;
+  align-items: center;
 }
-
 .input-widget {
   padding: 0.5em;
   margin: 0.5em;
@@ -126,5 +146,8 @@ export default {
   padding: 0.25em 1em;
   margin: 0 1em 1em 1em;
   background: rgba(50, 75, 125, 0.75);
+}
+:checked + span {
+  background: #fff;
 }
 </style>
