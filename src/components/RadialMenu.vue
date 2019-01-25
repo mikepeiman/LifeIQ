@@ -7,23 +7,23 @@
         <i class="material-icons md-24 toggleBtn menuBtn">menu</i>
         <i class="material-icons md-24 toggleBtn closeBtn">close</i>
       </div>
-            <div class="btn" v-for="operation in operations">
-              <div :style="'background: url(\'data:image/svg+xml;utf8,' + operation.dataSvg"></div>
-        <!-- <img src="../assets/svg/minus.svg" width="36px"></img> -->
+
+      <div class="btn" v-for="operation in operations">
+          <img :src="operation.filename" width="36px" name="operation" v-model="selectedOperation"></img>
       </div>
-<!-- 
-      <div class="btn">
+
+     <!-- <div class="btn">
           <img src="../assets/svg/multiply.svg" width="36px"></img>
       </div>
-      <div class="btn" :style="'background: url(\'data:image/svg+xml;utf8,' + operations[add].dataSvg">
-        <!-- <img src="../assets/svg/minus.svg" width="36px"></img> -->
-      <!-- </div>
       <div class="btn">
-        <img src="../assets/svg/plus.svg" width="36px"></img>
+        <img src="../assets/svg/minus.svg" width="36px"></img>
+      </div>
+      <div class="btn">
+        <img :src="operations[0].filename" width="36px"></img>
       </div>
       <div class="btn">
         <img src="../assets/svg/division.svg" width="36px"></img>
-      </div>  -->
+      </div> -->
 
           <!-- <label  v-for="operation in operations" :for="operation.name" class="btn radio" >
             <input class="" type="radio" :id="operation.name" :checked="isChecked" name="operation" v-model="selectedOperation">
@@ -43,32 +43,57 @@ export default {
       isChecked: false,
       selectedOperation: '',
       operations: [{
-          name: 'Add',
-          symbol: '+',
-          filename: 'plus',
+          name: 'Multiply',
+          symbol: '*',
+          filename: require('../assets/svg/multiply.svg'),
           dataSvg: '<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"	 viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve"><path style="fill:#6DC82A;" d="M256,512C114.839,512,0,397.161,0,256S114.839,0,256,0s256,114.839,256,256S397.161,512,256,512z"/><path style="fill:#61B325;" d="M512,256C512,114.839,397.161,0,256,0v512C397.161,512,512,397.161,512,256z"/><path style="fill:#FFFFFF;" d="M389.594,272.699H122.406c-9.225,0-16.699-7.475-16.699-16.699c0-9.225,7.475-16.699,16.699-16.699	h267.189c9.225,0,16.699,7.475,16.699,16.699C406.294,265.225,398.819,272.699,389.594,272.699z"/><path style="fill:#FFEB99;" d="M389.594,239.301H256v33.399h133.594c9.225,0,16.699-7.475,16.699-16.699	C406.294,246.775,398.819,239.301,389.594,239.301z"/></svg>'
         },
         {
           name: 'Subtract',
           symbol: '-',
-          filename: 'minus',
+          filename: require('../assets/svg/minus.svg'),
           dataSvg: '<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"	 viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve"><path style="fill:#6DC82A;" d="M256,512C114.839,512,0,397.161,0,256S114.839,0,256,0s256,114.839,256,256S397.161,512,256,512z"/><path style="fill:#61B325;" d="M512,256C512,114.839,397.161,0,256,0v512C397.161,512,512,397.161,512,256z"/><path style="fill:#FFFFFF;" d="M389.594,272.699H122.406c-9.225,0-16.699-7.475-16.699-16.699c0-9.225,7.475-16.699,16.699-16.699	h267.189c9.225,0,16.699,7.475,16.699,16.699C406.294,265.225,398.819,272.699,389.594,272.699z"/><path style="fill:#FFEB99;" d="M389.594,239.301H256v33.399h133.594c9.225,0,16.699-7.475,16.699-16.699	C406.294,246.775,398.819,239.301,389.594,239.301z"/></svg>'
         },
         {
-          name: 'Multiply',
-          symbol: '*',
-          filename: 'multiply',
+          name: 'Add',
+          symbol: '+',
+          filename: require('../assets/svg/plus.svg'),
           dataSvg: '<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"	 viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve"><path style="fill:#6DC82A;" d="M256,512C114.839,512,0,397.161,0,256S114.839,0,256,0s256,114.839,256,256S397.161,512,256,512z"/><path style="fill:#61B325;" d="M512,256C512,114.839,397.161,0,256,0v512C397.161,512,512,397.161,512,256z"/><path style="fill:#FFFFFF;" d="M389.594,272.699H122.406c-9.225,0-16.699-7.475-16.699-16.699c0-9.225,7.475-16.699,16.699-16.699	h267.189c9.225,0,16.699,7.475,16.699,16.699C406.294,265.225,398.819,272.699,389.594,272.699z"/><path style="fill:#FFEB99;" d="M389.594,239.301H256v33.399h133.594c9.225,0,16.699-7.475,16.699-16.699	C406.294,246.775,398.819,239.301,389.594,239.301z"/></svg>'
         },
+
         {
           name: 'Divide',
           symbol: '/',
-          filename: 'division',
+          filename: require('../assets/svg/division.svg'),
           dataSvg: '<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"	 viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve"><path style="fill:#6DC82A;" d="M256,512C114.839,512,0,397.161,0,256S114.839,0,256,0s256,114.839,256,256S397.161,512,256,512z"/><path style="fill:#61B325;" d="M512,256C512,114.839,397.161,0,256,0v512C397.161,512,512,397.161,512,256z"/><path style="fill:#FFFFFF;" d="M389.594,272.699H122.406c-9.225,0-16.699-7.475-16.699-16.699c0-9.225,7.475-16.699,16.699-16.699	h267.189c9.225,0,16.699,7.475,16.699,16.699C406.294,265.225,398.819,272.699,389.594,272.699z"/><path style="fill:#FFEB99;" d="M389.594,239.301H256v33.399h133.594c9.225,0,16.699-7.475,16.699-16.699	C406.294,246.775,398.819,239.301,389.594,239.301z"/></svg>'
         }
       ]
     }
-
+  },
+  methods: {
+    getImg(filename) {
+      return require('../assets/svg/' + filename)
+    }
+  },
+    computed: {
+    result() {
+      switch (this.selectedOperation.name) {
+        case "Add": return this.calculatedResult = Number(this.A) + Number(this.B);
+        break;
+        case "Subtract": return this.calculatedResult =  Number(this.A) - Number(this.B);
+        break;
+        case "Multiply": return this.calculatedResult =  Number(this.A) * Number(this.B);
+        break;
+        case "Divide": 
+        this.calculatedResult = Number(this.A) / Number(this.B);
+        if (!Number.isInteger(this.calculatedResult)) {
+          return this.calculatedResult = (Number(this.A) / Number(this.B)).toFixed(2);
+        } else {
+          return this.calculatedResult
+        }
+        break;
+      }
+    }
   }
 }
 </script>
