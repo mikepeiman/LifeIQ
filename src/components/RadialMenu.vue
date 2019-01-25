@@ -7,14 +7,30 @@
         <i class="material-icons md-24 toggleBtn menuBtn">menu</i>
         <i class="material-icons md-24 toggleBtn closeBtn">close</i>
       </div>
-      <!-- <div class="btn" v-for="operation in operations"> -->
-          <label  v-for="operation in operations" :for="operation.name" class="btn radio" >
+            <div class="btn" v-for="operation in operations">
+              <div :style="'background: url(\'data:image/svg+xml;utf8,' + operation.dataSvg"></div>
+        <!-- <img src="../assets/svg/minus.svg" width="36px"></img> -->
+      </div>
+<!-- 
+      <div class="btn">
+          <img src="../assets/svg/multiply.svg" width="36px"></img>
+      </div>
+      <div class="btn" :style="'background: url(\'data:image/svg+xml;utf8,' + operations[add].dataSvg">
+        <!-- <img src="../assets/svg/minus.svg" width="36px"></img> -->
+      <!-- </div>
+      <div class="btn">
+        <img src="../assets/svg/plus.svg" width="36px"></img>
+      </div>
+      <div class="btn">
+        <img src="../assets/svg/division.svg" width="36px"></img>
+      </div>  -->
+
+          <!-- <label  v-for="operation in operations" :for="operation.name" class="btn radio" >
             <input class="" type="radio" :id="operation.name" :checked="isChecked" name="operation" v-model="selectedOperation">
             <img :src="'../assets/svg/' + operation.filename + '.svg'" width="36px"></img>
             </input>
-          </label>
+          </label> -->
 
-      <!-- </div> -->
     </label>
   </div>
 </div>
@@ -24,29 +40,33 @@
 export default {
   data() {
     return {
-    isChecked: false,
-    selectedOperation: '',
-    operations: [{
-        name: 'Add',
-        symbol: '+',
-        filename: 'plus'
-      },
-      {
-        name: 'Subtract',
-        symbol: '-',
-        filename: 'minus'
-      },
-      {
-        name: 'Multiply',
-        symbol: '*',
-        filename: 'multiply'
-      },
-      {
-        name: 'Divide',
-        symbol: '/',
-        filename: 'division'
-      }
-    ]
+      isChecked: false,
+      selectedOperation: '',
+      operations: [{
+          name: 'Add',
+          symbol: '+',
+          filename: 'plus',
+          dataSvg: '<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"	 viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve"><path style="fill:#6DC82A;" d="M256,512C114.839,512,0,397.161,0,256S114.839,0,256,0s256,114.839,256,256S397.161,512,256,512z"/><path style="fill:#61B325;" d="M512,256C512,114.839,397.161,0,256,0v512C397.161,512,512,397.161,512,256z"/><path style="fill:#FFFFFF;" d="M389.594,272.699H122.406c-9.225,0-16.699-7.475-16.699-16.699c0-9.225,7.475-16.699,16.699-16.699	h267.189c9.225,0,16.699,7.475,16.699,16.699C406.294,265.225,398.819,272.699,389.594,272.699z"/><path style="fill:#FFEB99;" d="M389.594,239.301H256v33.399h133.594c9.225,0,16.699-7.475,16.699-16.699	C406.294,246.775,398.819,239.301,389.594,239.301z"/></svg>'
+        },
+        {
+          name: 'Subtract',
+          symbol: '-',
+          filename: 'minus',
+          dataSvg: '<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"	 viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve"><path style="fill:#6DC82A;" d="M256,512C114.839,512,0,397.161,0,256S114.839,0,256,0s256,114.839,256,256S397.161,512,256,512z"/><path style="fill:#61B325;" d="M512,256C512,114.839,397.161,0,256,0v512C397.161,512,512,397.161,512,256z"/><path style="fill:#FFFFFF;" d="M389.594,272.699H122.406c-9.225,0-16.699-7.475-16.699-16.699c0-9.225,7.475-16.699,16.699-16.699	h267.189c9.225,0,16.699,7.475,16.699,16.699C406.294,265.225,398.819,272.699,389.594,272.699z"/><path style="fill:#FFEB99;" d="M389.594,239.301H256v33.399h133.594c9.225,0,16.699-7.475,16.699-16.699	C406.294,246.775,398.819,239.301,389.594,239.301z"/></svg>'
+        },
+        {
+          name: 'Multiply',
+          symbol: '*',
+          filename: 'multiply',
+          dataSvg: '<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"	 viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve"><path style="fill:#6DC82A;" d="M256,512C114.839,512,0,397.161,0,256S114.839,0,256,0s256,114.839,256,256S397.161,512,256,512z"/><path style="fill:#61B325;" d="M512,256C512,114.839,397.161,0,256,0v512C397.161,512,512,397.161,512,256z"/><path style="fill:#FFFFFF;" d="M389.594,272.699H122.406c-9.225,0-16.699-7.475-16.699-16.699c0-9.225,7.475-16.699,16.699-16.699	h267.189c9.225,0,16.699,7.475,16.699,16.699C406.294,265.225,398.819,272.699,389.594,272.699z"/><path style="fill:#FFEB99;" d="M389.594,239.301H256v33.399h133.594c9.225,0,16.699-7.475,16.699-16.699	C406.294,246.775,398.819,239.301,389.594,239.301z"/></svg>'
+        },
+        {
+          name: 'Divide',
+          symbol: '/',
+          filename: 'division',
+          dataSvg: '<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"	 viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve"><path style="fill:#6DC82A;" d="M256,512C114.839,512,0,397.161,0,256S114.839,0,256,0s256,114.839,256,256S397.161,512,256,512z"/><path style="fill:#61B325;" d="M512,256C512,114.839,397.161,0,256,0v512C397.161,512,512,397.161,512,256z"/><path style="fill:#FFFFFF;" d="M389.594,272.699H122.406c-9.225,0-16.699-7.475-16.699-16.699c0-9.225,7.475-16.699,16.699-16.699	h267.189c9.225,0,16.699,7.475,16.699,16.699C406.294,265.225,398.819,272.699,389.594,272.699z"/><path style="fill:#FFEB99;" d="M389.594,239.301H256v33.399h133.594c9.225,0,16.699-7.475,16.699-16.699	C406.294,246.775,398.819,239.301,389.594,239.301z"/></svg>'
+        }
+      ]
     }
 
   }
@@ -55,6 +75,12 @@ export default {
 
 <style scoped>
 @import url('https://fonts.googleapis.com/icon?family=Material+Icons');
+
+input[type="radio"] {
+  appearance: none;
+  margin: 0;
+  padding: 0;
+}
 
 body {
   overflow: hidden;
