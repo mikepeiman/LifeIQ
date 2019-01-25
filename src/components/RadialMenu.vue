@@ -3,36 +3,19 @@
   <div class="menu">
     <input type="checkbox" id="toggle" />
     <label id="show-menu" for="toggle">
-      <div class="btn">
-        <i class="material-icons md-24 toggleBtn menuBtn">menu</i>
-        <i class="material-icons md-24 toggleBtn closeBtn">close</i>
-      </div>
+        <div class="btn">
+          <i class="material-icons md-24 toggleBtn menuBtn">menu</i>
+          <i class="material-icons md-24 toggleBtn closeBtn">close</i>
+        </div>
+        <div class="btn" v-for="operation in operations">
+          <input type="radio" :id="operation.name" name="operation" class="input-hidden" />
+          <label :for="operation.name" class="label-image" @click="operationSelect(operation.symbol)">
+            <img :src="operation.filename"  width="36px" height="36px;" name="operation" :value="operation.name" v-model="selectedOperation" />
+          </label>
 
-      <div class="btn" v-for="operation in operations">
-          <img :src="operation.filename" width="36px" name="operation" v-model="selectedOperation"></img>
-      </div>
-
-     <!-- <div class="btn">
-          <img src="../assets/svg/multiply.svg" width="36px"></img>
-      </div>
-      <div class="btn">
-        <img src="../assets/svg/minus.svg" width="36px"></img>
-      </div>
-      <div class="btn">
-        <img :src="operations[0].filename" width="36px"></img>
-      </div>
-      <div class="btn">
-        <img src="../assets/svg/division.svg" width="36px"></img>
-      </div> -->
-
-          <!-- <label  v-for="operation in operations" :for="operation.name" class="btn radio" >
-            <input class="" type="radio" :id="operation.name" :checked="isChecked" name="operation" v-model="selectedOperation">
-            <img :src="'../assets/svg/' + operation.filename + '.svg'" width="36px"></img>
-            </input>
-          </label> -->
-
-    </label>
   </div>
+  </label>
+</div>
 </div>
 </template>
 
@@ -73,27 +56,36 @@ export default {
   methods: {
     getImg(filename) {
       return require('../assets/svg/' + filename)
+    },
+    operationSelect(symbol) {
+      console.log(symbol)
     }
   },
-    computed: {
+  computed: {
     result() {
       switch (this.selectedOperation.name) {
-        case "Add": return this.calculatedResult = Number(this.A) + Number(this.B);
-        break;
-        case "Subtract": return this.calculatedResult =  Number(this.A) - Number(this.B);
-        break;
-        case "Multiply": return this.calculatedResult =  Number(this.A) * Number(this.B);
-        break;
-        case "Divide": 
-        this.calculatedResult = Number(this.A) / Number(this.B);
-        if (!Number.isInteger(this.calculatedResult)) {
-          return this.calculatedResult = (Number(this.A) / Number(this.B)).toFixed(2);
-        } else {
-          return this.calculatedResult
-        }
-        break;
+        case "Add":
+          return this.calculatedResult = Number(this.A) + Number(this.B);
+          break;
+        case "Subtract":
+          return this.calculatedResult = Number(this.A) - Number(this.B);
+          break;
+        case "Multiply":
+          return this.calculatedResult = Number(this.A) * Number(this.B);
+          break;
+        case "Divide":
+          this.calculatedResult = Number(this.A) / Number(this.B);
+          if (!Number.isInteger(this.calculatedResult)) {
+            return this.calculatedResult = (Number(this.A) / Number(this.B)).toFixed(2);
+          } else {
+            return this.calculatedResult
+          }
+          break;
       }
-    }
+    },
+    // selectedOperation() {
+    //   this.selectedOperation = this.operation.name
+    // }
   }
 }
 </script>
@@ -101,10 +93,28 @@ export default {
 <style scoped>
 @import url('https://fonts.googleapis.com/icon?family=Material+Icons');
 
-input[type="radio"] {
+.label-image {
+  line-height: 0;
+}
+.input-hidden {
+  position: absolute;
+  display: none;
+  z-index: 4;
+}
+
+/* input[type=radio]:checked + label>img {
+  border: 5px solid #fff;
+  box-shadow: 0 0 3px 3px #090;
+} */
+
+/* input[type="radio"] {
   appearance: none;
   margin: 0;
   padding: 0;
+} */
+
+.radial-menu-container {
+  margin: 0 1em;
 }
 
 body {
@@ -162,6 +172,7 @@ input {
 
   -webkit-transition: all 0.3s cubic-bezier(.25, .8, .25, 1);
   transition: all 0.3s cubic-bezier(.25, .8, .25, 1);
+  z-index: 3;
 }
 
 .btn:not(:first-child) {

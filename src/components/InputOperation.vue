@@ -93,10 +93,7 @@ export default {
 
 <style scoped>
 
-.radial-menu-container {
-  display: flex;
-  margin: 1em;
-}
+
 .radio {
   cursor: pointer;
 }
