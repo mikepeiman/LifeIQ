@@ -96,6 +96,12 @@ export default {
         case 40:
           return this.operations[3] // this.selectedOperation = "Divide";
           break;
+        case 9:
+        if(this.selectedOperation != '') {
+          return this.selectedOperation
+         } else { 
+           return this.operations[0] 
+          }
         default:
           return this.selectedOperation
       }
@@ -114,6 +120,13 @@ export default {
         case "Divide":
           return this.operations[3] // this.selectedOperation = "Divide";
           break;
+        default:
+          if(this.selectedOperation != '') {
+          return this.selectedOperation
+         } else { 
+           return this.operations[0] 
+          }
+
       }
     },
     result() {
