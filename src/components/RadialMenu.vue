@@ -1,18 +1,14 @@
 <template>
-<div class="radial-menu-container">
+<div class="radial-menu-container" tabindex="0" @keydown="setOperationByKey">
   <div class="menu">
     <input type="checkbox" id="toggle" />
-    <label id="show-menu" for="toggle">
+    <label id="show-menu" for="toggle"> 
         <div class="btn">
           <i class="material-icons md-24 toggleBtn menuBtn">menu</i>
           <i class="material-icons md-24 toggleBtn closeBtn">close</i>
         </div>
         <div class="btn" v-for="operation in operations">
-          <input type="radio" :id="operation.name" name="operation" class="input-hidden" />
-          <label :for="operation.name" class="label-image" @click="operationSelect(operation.symbol)">
-            <img :src="operation.filename"  width="36px" height="36px;" name="operation" :value="operation.name" v-model="selectedOperation" />
-          </label>
-
+            <img :src="operation.filename"  @click="operationSelect(operation)" width="36px" height="36px;" name="operation" v-model="selectedOperation" />
   </div>
   </label>
 </div>
@@ -23,7 +19,10 @@
 export default {
   data() {
     return {
+      keyCode: '',
+      e: '',
       isChecked: false,
+      isMenuToggled: false,
       selectedOperation: '',
       operations: [{
           name: 'Multiply',
@@ -57,8 +56,19 @@ export default {
     getImg(filename) {
       return require('../assets/svg/' + filename)
     },
-    operationSelect(symbol) {
-      console.log(symbol)
+    operationSelect(operation) {
+      let checked = document.getElementById('toggle').checked
+      console.log(operation.name, this.isMenuToggled, checked)
+      this.selectedOperation = operation.symbol
+      
+      // 
+    },
+    setOperationByKey(e) {
+      let toggle = document.getElementById('toggle')
+      this.keyCode = e.keyCode
+      console.log(e.keyCode, toggle)
+      toggle.checked = !toggle.checked
+      
     }
   },
   computed: {
@@ -83,6 +93,9 @@ export default {
           break;
       }
     },
+    listenForArrowKeys() {
+
+    }
     // selectedOperation() {
     //   this.selectedOperation = this.operation.name
     // }
