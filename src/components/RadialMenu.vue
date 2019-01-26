@@ -1,17 +1,19 @@
 <template>
-<div class="radial-menu-container" tabindex="0" @keydown="setOperationByKey">
+<div class="radial-menu-container" tabindex="0" @keydown="setOperationByKeyDown">
   <div class="menu">
     <input type="checkbox" id="toggle" />
-    <label id="show-menu" for="toggle"> 
+    <label id="show-menu" for="toggle">
         <div class="btn">
-          <i class="material-icons md-24 toggleBtn menuBtn">menu</i>
-          <i class="material-icons md-24 toggleBtn closeBtn">close</i>
+          <img v-if="selectedOperation == ''" class="material-icons md-24 toggleBtn menuBtn" id="menuBtn"></img>
+          <img v-if="selectedOperation == ''" class="material-icons md-24 toggleBtn closeBtn" id="closeBtn"></img>
+          <img v-if="selectedOperation != undefined" :src="selectedOperation.filename" class="material-icons md-24 toggleBtn menuBtn" id="closeBtn"></img>
+          <img v-if="selectedOperation != undefined" :src="selectedOperation.filename" class="material-icons md-24 toggleBtn closeBtn" id="closeBtn"></img>
         </div>
         <div class="btn" v-for="operation in operations">
             <img :src="operation.filename"  @click="operationSelect(operation)" width="36px" height="36px;" name="operation" v-model="selectedOperation" />
   </div>
   </label>
-</div>
+  </div>
 </div>
 </template>
 
@@ -24,7 +26,9 @@ export default {
       isChecked: false,
       isMenuToggled: false,
       selectedOperation: '',
-      operations: [{
+      clickedOperation: '',
+      operations: [
+        {
           name: 'Multiply',
           symbol: '*',
           filename: require('../assets/svg/multiply.svg'),
@@ -42,7 +46,6 @@ export default {
           filename: require('../assets/svg/plus.svg'),
           dataSvg: '<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"	 viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve"><path style="fill:#6DC82A;" d="M256,512C114.839,512,0,397.161,0,256S114.839,0,256,0s256,114.839,256,256S397.161,512,256,512z"/><path style="fill:#61B325;" d="M512,256C512,114.839,397.161,0,256,0v512C397.161,512,512,397.161,512,256z"/><path style="fill:#FFFFFF;" d="M389.594,272.699H122.406c-9.225,0-16.699-7.475-16.699-16.699c0-9.225,7.475-16.699,16.699-16.699	h267.189c9.225,0,16.699,7.475,16.699,16.699C406.294,265.225,398.819,272.699,389.594,272.699z"/><path style="fill:#FFEB99;" d="M389.594,239.301H256v33.399h133.594c9.225,0,16.699-7.475,16.699-16.699	C406.294,246.775,398.819,239.301,389.594,239.301z"/></svg>'
         },
-
         {
           name: 'Divide',
           symbol: '/',
@@ -57,21 +60,62 @@ export default {
       return require('../assets/svg/' + filename)
     },
     operationSelect(operation) {
-      let checked = document.getElementById('toggle').checked
-      console.log(operation.name, this.isMenuToggled, checked)
-      this.selectedOperation = operation.symbol
-      
+      // let toggle = document.getElementById('toggle')
+      // console.log(operation.name, this.isMenuToggled, toggle)
+      this.clickedOperation = operation.name
+      console.log(operation.name, this.clickedOperation)
+      this.selectedOperation = this.setOperationByClick
+      this.$emit('operation', this.selectedOperation)
+
       // 
     },
-    setOperationByKey(e) {
+    setOperationByKeyDown(e) {
       let toggle = document.getElementById('toggle')
       this.keyCode = e.keyCode
-      console.log(e.keyCode, toggle)
-      toggle.checked = !toggle.checked
-      
+      console.log(e.keyCode, toggle.checked)
+      toggle.checked = false
+      this.selectedOperation = this.setOperationByKey
+      console.log('second @click method', this.selectedOperation)
+      this.$emit('operation', this.selectedOperation)
     }
   },
   computed: {
+    setOperationByKey() {
+      switch (this.keyCode) {
+        case 13:
+          return toggle.checked = true
+        case 37:
+          return this.operations[1] // this.selectedOperation = "Subtract";
+          break;
+        case 38:
+          return this.operations[0] // this.selectedOperation = "Multiply";
+          break;
+        case 39:
+          return this.operations[2] // this.selectedOperation = "Add";
+          break;
+        case 40:
+          return this.operations[3] // this.selectedOperation = "Divide";
+          break;
+        default:
+          return this.selectedOperation
+      }
+    },
+    setOperationByClick() {
+      switch (this.clickedOperation) {
+        case "Subtract":
+          return this.operations[1] // this.selectedOperation = "Subtract";
+          break;
+        case "Multiply":
+          return this.operations[0] // this.selectedOperation = "Multiply";
+          break;
+        case "Add":
+          return this.operations[2] // this.selectedOperation = "Add";
+          break;
+        case "Divide":
+          return this.operations[3] // this.selectedOperation = "Divide";
+          break;
+      }
+    },
     result() {
       switch (this.selectedOperation.name) {
         case "Add":
@@ -109,6 +153,7 @@ export default {
 .label-image {
   line-height: 0;
 }
+
 .input-hidden {
   position: absolute;
   display: none;

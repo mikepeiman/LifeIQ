@@ -1,30 +1,14 @@
 <template>
 <div class="component-wrapper">
-  <!-- <div class="operation-select grid-container-4 radio-toolbar" v-for="operation in operations">
-    <label :for="operation.name" class="radio" >
-      <input type="radio" :id="operation.name" :checked="isChecked" name="operation" v-model="selectedOperation">
-      <i class="fas fa-plus-circle"></i>
-      {{ operation.name }}</label>
-  </div> -->
-  <div class="radial-menu-container">
-    
-  </div>
-  
-<!-- 
-  <select v-model="selectedOperation" single>
-    <option v-for="operation in operations" v-bind:value="operation.symbol" selected="selected">
-      {{ operation.name }}
-    </option>
-</select> -->
   <p>
     <span>Selected operation: {{ selectedOperation.name }}</span>
   </p>
 
-  <div class="input-widget-wrapper grid-container-3 flex">
+  <div class="input-widget-wrapper flex">
     <label for="inputA">Enter a number
       <input tabindex="1" type="number" class="input-widget input" id="inputA" name="input-a" v-model="A">
     </label>
-    <RadialMenu tabindex="2" />
+    <RadialMenu tabindex="2" @operation="setOperator" />
     <label for="inputB">Enter another number
       <input tabindex="3" type="number" class="input-widget input" id="inputB" name="input-b" v-model="B">
     </label>
@@ -68,8 +52,14 @@ export default {
       calculatedResult: ''
     }
   },
+  methods: {
+    setOperator(operator) {
+      this.selectedOperation = operator
+    }
+  },
   computed: {
     result() {
+      console.log("this.selectedOperation.name: ", this.selectedOperation.name)
       switch (this.selectedOperation.name) {
         case "Add": return this.calculatedResult = Number(this.A) + Number(this.B);
         break;
@@ -85,6 +75,7 @@ export default {
           return this.calculatedResult
         }
         break;
+        return 42
       }
     }
   }
@@ -92,8 +83,6 @@ export default {
 </script>
 
 <style scoped>
-
-
 .radio {
   cursor: pointer;
 }
@@ -105,11 +94,11 @@ export default {
   padding: .5em;
 }
 
-/* .grid-container-3 {
+.grid-container-3 {
   display: grid;
   grid-template-columns: 45% 10% 45%;
   grid-auto-rows: 1;
-} */
+}
 .flex {
   display: flex;
   justify-content: center;
