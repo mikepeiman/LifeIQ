@@ -10,7 +10,8 @@
           <img v-if="selectedOperation != undefined" :src="selectedOperation.filename" class="material-icons md-24 toggleBtn closeBtn" id="closeBtn"></img>
         </div>
         <div class="btn" v-for="operation in operations">
-            <img :src="operation.filename"  @click="operationSelect(operation)" width="36px" height="36px;" name="operation" v-model="selectedOperation" />
+          <i class="fas fa-divide" :class=""></i>
+            <!-- <img :src="operation.filename"  @click="operationSelect(operation)" width="28px" height="28px;" name="operation" v-model="selectedOperation" /> -->
   </div>
   </label>
   </div>
@@ -160,8 +161,13 @@ export default {
 }
 </script>
 
-<style scoped>
+
+<style  lang="scss" scoped>
 @import url('https://fonts.googleapis.com/icon?family=Material+Icons');
+
+i {
+  background: none;
+}
 
 .label-image {
   line-height: 0;
@@ -211,23 +217,24 @@ input {
   position: absolute;
   /* top: 50%;
   left: 50%; */
-  margin-left: -17px;
-  margin-top: -7px;
+  margin-left: -13px;
+  margin-top: -3px;
 }
 
 .btn {
-  width: 36px;
-  height: 36px;
-  border-radius: 36px;
+  width: 28px;
+  height: 28px;
+  border-radius: 28px;
   position: absolute;
   overflow: hidden;
   cursor: pointer;
+  background: none;
 }
 
-/* .material-icons.md-36 { font-size: 36px; color: #03A9F4 } */
+/* .material-icons.md-36 { font-size: 28px; color: #03A9F4 } */
 
 .btn {
-  background: #ECEFF1;
+  background:#333;
   font-size: 15px;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -238,19 +245,20 @@ input {
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
-
+  box-shadow: 0px 0px 3px rgba(0, 161, 255, 1);
   -webkit-transition: all 0.3s cubic-bezier(.25, .8, .25, 1);
   transition: all 0.3s cubic-bezier(.25, .8, .25, 1);
   z-index: 3;
+    &:hover {
+    box-shadow:  0px 0px 3px rgba(255, 120, 0, 1);
+  }
 }
 
 .btn:not(:first-child) {
   opacity: 0;
+  background: none;
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
   z-index: 2;
-
   -webkit-transition: all 0.6s cubic-bezier(.87, -.41, .19, 1.44);
   transition: all 0.6s cubic-bezier(.87, -.41, .19, 1.44);
 }
@@ -258,14 +266,22 @@ input {
 .btn:nth-child(2) {
   top: 0px;
   -webkit-transition-delay: 0s;
-  transition-delay: 0s
+  transition-delay: 0s;
+  box-shadow: 0px -1px 2px rgba(0, 161, 255, 1), 0px 1px 3px rgba(255, 120, 0, 1);
+  &:hover {
+    box-shadow:  0px 0px 3px rgba(255, 120, 0, 1);
+  }
 }
 
 .btn:nth-child(3) {
   top: 0px;
   left: 0px;
   -webkit-transition-delay: 0.1s;
-  transition-delay: 0.1s
+  transition-delay: 0.1s;
+  box-shadow: -1px 0px 2px rgba(0, 161, 255, 1), 1px 0px 3px rgba(255, 120, 0, 1);
+    &:hover {
+    box-shadow:  0px 0px 3px rgba(255, 120, 0, 1);
+  }
 }
 
 .btn:nth-child(4) {
@@ -273,14 +289,22 @@ input {
   ;
   -webkit-transition-delay: 0.2s;
   ;
-  transition-delay: 0.2s
+  transition-delay: 0.2s;
+  box-shadow: 1px 0px 2px rgba(0, 161, 255, 1), -1px 0px 3px rgba(255, 120, 0, 1);
+    &:hover {
+    box-shadow:  0px 0px 3px rgba(255, 120, 0, 1);
+  }
 }
 
 .btn:nth-child(5) {
   top: 0px;
   left: 0px;
   -webkit-transition-delay: 0.3s;
-  transition-delay: 0.3s
+  transition-delay: 0.3s;
+  box-shadow: 0px 1px 2px rgba(0, 161, 255, 1), 0px -1px 3px rgba(255, 120, 0, 1);
+    &:hover {
+    box-shadow:  0px 0px 3px rgba(255, 120, 0, 1);
+  }
 }
 
 .btn:nth-child(6) {
@@ -310,25 +334,25 @@ input {
 }
 
 input#toggle:checked~#show-menu .btn:nth-child(2) {
-  top: -36px;
+  top: -24px;
   opacity: 1;
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
 }
 
 input#toggle:checked~#show-menu .btn:nth-child(3) {
-  left: -36px;
+  left: -24px;
   opacity: 1;
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
 }
 
 input#toggle:checked~#show-menu .btn:nth-child(4) {
-  left: 36px;
+  left: 24px;
   opacity: 1;
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
 }
 
 input#toggle:checked~#show-menu .btn:nth-child(5) {
-  top: 36px;
+  top: 24px;
   opacity: 1;
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
 }
@@ -340,12 +364,12 @@ input#toggle:checked~#show-menu .btn:nth-child(5) {
 }
 
 .closeBtn {
-  transform: translateY(36px);
+  transform: translateY(28px);
   opacity: 0;
 }
 
 input#toggle:checked~#show-menu .btn .menuBtn {
-  transform: translateY(-36px);
+  transform: translateY(-28px);
   opacity: 0;
 }
 
