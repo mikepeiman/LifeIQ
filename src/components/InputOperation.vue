@@ -12,6 +12,7 @@
     <label for="inputB">Enter another number
       <input tabindex="3" type="number" class="input-widget input" id="inputB" name="input-b" v-model="B">
     </label>
+    <div class="results">= {{ result }}</div>
   </div>
 
   <div class="input-widget-wrapper result">
@@ -83,6 +84,15 @@ export default {
 </script>
 
 <style scoped>
+.results {
+  /* font-size: 1.5em; */
+  margin: 22px 0 0 0px;
+  /* background: ffb42a; */
+  padding: 3px 10px;
+  color: #ffb42a;
+  border: 3px solid #ffb42a;
+  border-radius: 3px;
+}
 .radio {
   cursor: pointer;
 }
