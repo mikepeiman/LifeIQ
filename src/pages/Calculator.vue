@@ -1,8 +1,10 @@
 <template>
 <Layout>
-<h1>Welcome to LifeIQ</h1>
-<h2>Augment Your Intelligence</h2>
-<button class="button">Learn More</button>
+
+  <h1>Calculate</h1>
+  <InputOperation :operator="operator" />
+  <!-- <button @click="logProps" class="v-button">click to log props</button> -->
+
 </Layout>
 </template>
 

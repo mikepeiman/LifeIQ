@@ -6,6 +6,7 @@
       </strong>
     <nav class="nav">
       <g-link class="nav__link" :to="{ name: 'home' }">Home</g-link>
+      <g-link class="nav__link" :to="{ name: 'calculator' }">Calculator</g-link>
       <g-link class="nav__link" :to="{ name: 'about' }">About</g-link>
       <g-link class="nav__link" :to="{ name: 'skills' }">Skills</g-link>
       <g-link class="nav__link" :to="{ name: 'radial-menu' }">Radial Menu</g-link>
