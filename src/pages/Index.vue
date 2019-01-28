@@ -41,7 +41,7 @@ export default {
 
 <style>
 .result {
-  border-color: #ffaa33;
+  border-color: #FFAB00;
 }
 
 .grid-container-2 {

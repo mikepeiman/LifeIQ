@@ -16,6 +16,7 @@
         </div>
         <div class="btn" v-for="operation in operations" @click="operationSelect(operation)">
           <i class="fas" :class="operation.iconname" v-model="selectedOperation"></i>
+
             <!-- <img :src="operation.filename"  @click="operationSelect(operation)" width="28px" height="28px;" name="operation" v-model="selectedOperation" /> -->
   </div>
   </label>
@@ -153,6 +154,7 @@ export default {
 }
 </script>
 
+
 <style scoped>
 @import url('https://fonts.googleapis.com/icon?family=Material+Icons');
 
@@ -163,6 +165,7 @@ i {
 .active {
   color: #FFAB00;
 }
+
 
 .label-image {
   line-height: 0;
@@ -224,6 +227,7 @@ input {
   overflow: hidden;
   cursor: pointer;
   background: none;
+
 }
 .btn:first-child:hover {
   box-shadow: 0px 0px 3px rgba(255, 120, 0, 1);
@@ -231,6 +235,7 @@ input {
 
 .btn {
   /* background: #333; */
+
   font-size: 15px;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -245,6 +250,9 @@ input {
   -webkit-transition: all 0.3s cubic-bezier(.25, .8, .25, 1);
   transition: all 0.3s cubic-bezier(.25, .8, .25, 1);
   z-index: 3;
+    &:hover {
+    box-shadow:  0px 0px 3px rgba(255, 120, 0, 1);
+  }
 }
 
 .btn:not(:first-child) {
@@ -257,6 +265,7 @@ input {
   -webkit-transition-delay: 0.1s;
   transition-delay: 0.1s;
   box-shadow: 0px 0px 2px rgba(0, 161, 255, 1);
+
 }
 
 .btn:not(:first-child):hover {
@@ -286,25 +295,33 @@ input#toggle:checked~#show-menu .btn:nth-child(1) {
 } */
 
 input#toggle:checked~#show-menu .btn:nth-child(2) {
+
   top: -28px;
+
   opacity: 1;
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
 }
 
 input#toggle:checked~#show-menu .btn:nth-child(3) {
+
   left: -28px;
+
   opacity: 1;
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
 }
 
 input#toggle:checked~#show-menu .btn:nth-child(4) {
+
   left: 28px;
+
   opacity: 1;
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
 }
 
 input#toggle:checked~#show-menu .btn:nth-child(5) {
+
   top: 28px;
+
   opacity: 1;
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
 }

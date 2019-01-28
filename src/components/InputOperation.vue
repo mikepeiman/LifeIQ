@@ -120,7 +120,6 @@ export default {
   padding: 0.5em;
   margin: 0.5em;
   border: none;
-  border-width: 3px;	  
   border-bottom: 1px dashed #00a1ff; 
   background: none;
   color: #FFAB00;
@@ -136,7 +135,7 @@ export default {
 }
 
 .input-widget-wrapper {
-  background: rgba(0, 0, 0, 0.1);
+  /* background: rgba(0, 0, 0, 0.1); */
   border-radius: 3px;
 }
 
