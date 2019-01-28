@@ -21,11 +21,8 @@ export default {
   },
   data: function () {
     return {
-      A: '',
-      B: '',
-      operationName: '',
-      operator: '',
-      result: ''
+      operator: ''
+
     }
   },
   methods: {

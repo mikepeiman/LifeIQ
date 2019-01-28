@@ -3,23 +3,14 @@
   <div class="menu">
     <input type="checkbox" id="toggle" />
     <label id="show-menu" for="toggle">
-        <div class="btn">
-          <!-- <i class="fas fa-question"></i> -->
-          <!-- <i v-if="selectedOperation == ''" class="toggleBtn menuBtn fas" :class="selectedOperation.iconname" id="menuBtn"></i> -->
-          <i v-if="selectedOperation == ''" v-model="selectedOperation" class="toggleBtn menuBtn fas" :class="selectedOperation.iconname" id="closeBtn"></i>
-          <i v-if="selectedOperation != ''" v-model="selectedOperation" class="fas active" :class="selectedOperation.iconname" id="menuBtn"></i>
-          <!-- <i v-if="selectedOperation != undefined" class="fas" :class="selectedOperation.iconname" id="closeBtn"></i> -->
-          <!-- <img v-if="selectedOperation == ''" class="material-icons md-24 toggleBtn menuBtn" id="menuBtn"></img>
-          <img v-if="selectedOperation == ''" class="material-icons md-24 toggleBtn closeBtn" id="closeBtn"></img>
-          <img v-if="selectedOperation != undefined" :src="selectedOperation.filename" class="material-icons md-24 toggleBtn menuBtn" id="closeBtn"></img>
-          <img v-if="selectedOperation != undefined" :src="selectedOperation.filename" class="material-icons md-24 toggleBtn closeBtn" id="closeBtn"></img> -->
-        </div>
-        <div class="btn" v-for="operation in operations" @click="operationSelect(operation)">
-          <i class="fas" :class="operation.iconname" v-model="selectedOperation"></i>
-
-            <!-- <img :src="operation.filename"  @click="operationSelect(operation)" width="28px" height="28px;" name="operation" v-model="selectedOperation" /> -->
-  </div>
-  </label>
+      <div class="btn">
+        <i v-if="selectedOperation == ''" v-model="selectedOperation" class="toggleBtn fas" :class="selectedOperation.iconname" id="closeBtn"></i>
+        <i v-if="selectedOperation != ''" v-model="selectedOperation" class="fas toggleBtn active" :class="selectedOperation.iconname" id="menuBtn"></i>
+      </div>
+      <div class="btn" v-for="operation in operations" @click="operationSelect(operation)">
+        <i class="fas" :class="operation.iconname" v-model="selectedOperation"></i>
+      </div>
+    </label>
   </div>
 </div>
 </template>
@@ -154,7 +145,6 @@ export default {
 }
 </script>
 
-
 <style scoped>
 @import url('https://fonts.googleapis.com/icon?family=Material+Icons');
 
@@ -165,7 +155,6 @@ i {
 .active {
   color: #FFAB00;
 }
-
 
 .label-image {
   line-height: 0;
@@ -229,6 +218,7 @@ input {
   background: none;
 
 }
+
 .btn:first-child:hover {
   box-shadow: 0px 0px 3px rgba(255, 120, 0, 1);
 }
@@ -250,8 +240,9 @@ input {
   -webkit-transition: all 0.3s cubic-bezier(.25, .8, .25, 1);
   transition: all 0.3s cubic-bezier(.25, .8, .25, 1);
   z-index: 3;
-    &:hover {
-    box-shadow:  0px 0px 3px rgba(255, 120, 0, 1);
+
+  &:hover {
+    box-shadow: 0px 0px 3px rgba(255, 120, 0, 1);
   }
 }
 
@@ -290,6 +281,7 @@ input#toggle:checked~#show-menu .btn:nth-child(1) {
   /* box-shadow: none; */
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
 }
+
 /* i#menuBtn.fas.active {
   color: rgba(0, 0, 0, 0);
 } */

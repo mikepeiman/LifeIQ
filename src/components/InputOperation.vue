@@ -1,9 +1,5 @@
 <template>
-<div class="component-wrapper">
-  <p>
-    <span>Selected operation: {{ selectedOperation.name }}</span>
-  </p>
-
+<div class="component-wrapper grid-container">
   <div class="input-widget-wrapper flex">
     <label for="inputA">Enter a number
       <input tabindex="1" type="number" class="input-widget input" id="inputA" name="input-a" v-model="A">
@@ -12,12 +8,9 @@
     <label for="inputB">Enter another number
       <input tabindex="3" type="number" class="input-widget input" id="inputB" name="input-b" v-model="B">
     </label>
-    <div class="results">= {{ result }}</div>
-  </div>
 
-  <div class="input-widget-wrapper result">
-    <p>Calculate {{ selectedOperation.name }}: {{ A }} {{ selectedOperation.symbol }} {{ B }} = {{ result }}</p>
   </div>
+      <div class="results-box">= {{ result }}</div>
 </div>
 </template>
 
@@ -84,11 +77,15 @@ export default {
 </script>
 
 <style scoped>
-.results {
+.results-box {
   /* font-size: 1.5em; */
-  margin: 22px 0 0 0px;
+  margin: 1.5em 0 1.5em 0;
+  top: 10px;
+  position: relative;
+  width: auto;
+  height: 1em;
   /* background: ffb42a; */
-  padding: 3px 10px;
+  padding: 2px 10px 10px 10px;
   color: #ffb42a;
   border: 3px solid #ffb42a;
   border-radius: 3px;
@@ -104,9 +101,9 @@ export default {
   padding: .5em;
 }
 
-.grid-container-3 {
+.grid-container {
   display: grid;
-  grid-template-columns: 45% 10% 45%;
+  grid-template-columns: 80% 20%;
   grid-auto-rows: 1;
 }
 .flex {
@@ -153,5 +150,11 @@ export default {
 }
 :checked + span {
   background: #fff;
+}
+
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
 }
 </style>
