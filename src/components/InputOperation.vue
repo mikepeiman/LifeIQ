@@ -119,8 +119,16 @@ export default {
 .input-widget {
   padding: 0.5em;
   margin: 0.5em;
-  border-radius: 3px;
-  border-width: 3px;
+  border: none;
+  border-width: 3px;	  
+  border-bottom: 1px dashed #00a1ff; 
+  background: none;
+  color: #FFAB00;
+}
+.input-widget:focus {
+  border: none;
+  outline: none;
+  border-bottom: 1px dashed #FFAB00;
 }
 
 .input {

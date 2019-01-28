@@ -4,13 +4,18 @@
     <input type="checkbox" id="toggle" />
     <label id="show-menu" for="toggle">
         <div class="btn">
-          <img v-if="selectedOperation == ''" class="material-icons md-24 toggleBtn menuBtn" id="menuBtn"></img>
+          <!-- <i class="fas fa-question"></i> -->
+          <!-- <i v-if="selectedOperation == ''" class="toggleBtn menuBtn fas" :class="selectedOperation.iconname" id="menuBtn"></i> -->
+          <i v-if="selectedOperation == ''" v-model="selectedOperation" class="toggleBtn menuBtn fas" :class="selectedOperation.iconname" id="closeBtn"></i>
+          <i v-if="selectedOperation != ''" v-model="selectedOperation" class="fas active" :class="selectedOperation.iconname" id="menuBtn"></i>
+          <!-- <i v-if="selectedOperation != undefined" class="fas" :class="selectedOperation.iconname" id="closeBtn"></i> -->
+          <!-- <img v-if="selectedOperation == ''" class="material-icons md-24 toggleBtn menuBtn" id="menuBtn"></img>
           <img v-if="selectedOperation == ''" class="material-icons md-24 toggleBtn closeBtn" id="closeBtn"></img>
           <img v-if="selectedOperation != undefined" :src="selectedOperation.filename" class="material-icons md-24 toggleBtn menuBtn" id="closeBtn"></img>
-          <img v-if="selectedOperation != undefined" :src="selectedOperation.filename" class="material-icons md-24 toggleBtn closeBtn" id="closeBtn"></img>
+          <img v-if="selectedOperation != undefined" :src="selectedOperation.filename" class="material-icons md-24 toggleBtn closeBtn" id="closeBtn"></img> -->
         </div>
-        <div class="btn" v-for="operation in operations">
-          <i class="fas" :class="operation.iconname"></i>
+        <div class="btn" v-for="operation in operations" @click="operationSelect(operation)">
+          <i class="fas" :class="operation.iconname" v-model="selectedOperation"></i>
             <!-- <img :src="operation.filename"  @click="operationSelect(operation)" width="28px" height="28px;" name="operation" v-model="selectedOperation" /> -->
   </div>
   </label>
@@ -59,11 +64,8 @@ export default {
       // let toggle = document.getElementById('toggle')
       // console.log(operation.name, this.isMenuToggled, toggle)
       this.clickedOperation = operation.name
-      console.log(operation.name, this.clickedOperation)
       this.selectedOperation = this.setOperationByClick
       this.$emit('operation', this.selectedOperation)
-
-      // 
     },
     setOperationByKeyDown(e) {
       let toggle = document.getElementById('toggle')
@@ -117,11 +119,12 @@ export default {
           return this.operations[3] // this.selectedOperation = "Divide";
           break;
         default:
-          if (this.selectedOperation != '') {
-            return this.selectedOperation
-          } else {
-            return this.operations[0]
-          }
+          return this.selectedOperation
+          // if (this.selectedOperation != '') {
+          //   return this.selectedOperation
+          // } else {
+          //   return this.operations[0]
+          // }
 
       }
     },
@@ -145,13 +148,7 @@ export default {
           }
           break;
       }
-    },
-    listenForArrowKeys() {
-
     }
-    // selectedOperation() {
-    //   this.selectedOperation = this.operation.name
-    // }
   }
 }
 </script>
@@ -161,6 +158,10 @@ export default {
 
 i {
   background: none;
+}
+
+.active {
+  color: #FFAB00;
 }
 
 .label-image {
@@ -224,11 +225,12 @@ input {
   cursor: pointer;
   background: none;
 }
-
-/* .material-icons.md-36 { font-size: 28px; color: #03A9F4 } */
+.btn:first-child:hover {
+  box-shadow: 0px 0px 3px rgba(255, 120, 0, 1);
+}
 
 .btn {
-  background: #333;
+  /* background: #333; */
   font-size: 15px;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -243,14 +245,6 @@ input {
   -webkit-transition: all 0.3s cubic-bezier(.25, .8, .25, 1);
   transition: all 0.3s cubic-bezier(.25, .8, .25, 1);
   z-index: 3;
-
-  &:hover {
-    box-shadow: 0px 0px 3px rgba(255, 120, 0, 1);
-  }
-}
-
-.btn:first-child {
-  scale: 2;
 }
 
 .btn:not(:first-child) {
@@ -260,76 +254,26 @@ input {
   z-index: 2;
   -webkit-transition: all 0.3s cubic-bezier(.87, -.41, .19, 1.44);
   transition: all 0.3s cubic-bezier(.87, -.41, .19, 1.44);
-}
-
-.btn:nth-child(2) {
-  top: 0px;
   -webkit-transition-delay: 0.1s;
   transition-delay: 0.1s;
   box-shadow: 0px 0px 2px rgba(0, 161, 255, 1);
-  /* 0px 1px 3px rgba(255, 120, 0, 1); */
-
 }
 
-.btn:nth-child(2):hover {
+.btn:not(:first-child):hover {
   box-shadow: 0px 0px 3px rgba(255, 120, 0, 1);
   transition: all 0s;
-    -webkit-transition: 0s;
-      -webkit-transition-delay: 0s;
+  -webkit-transition: 0s;
+  -webkit-transition-delay: 0s;
   transition-delay: 0s;
-}
-
-.btn:nth-child(3) {
-  top: 0px;
-  left: 0px;
-  -webkit-transition-delay: 0.1s;
-  transition-delay: 0.1s;
-  box-shadow: 0px 0px 2px rgba(0, 161, 255, 1);
-  /* 1px 0px 3px rgba(255, 120, 0, 1); */
-
-}
-
-.btn:nth-child(3):hover {
-  box-shadow: 0px 0px 3px rgba(255, 120, 0, 1);
-  transition: all 0s;
-    -webkit-transition: 0s;
-}
-
-.btn:nth-child(4) {
-  left: 0px;
-  ;
-  -webkit-transition-delay: 0.1s;
-  ;
-  transition-delay: 0.1s;
-  box-shadow: 0px 0px 2px rgba(0, 161, 255, 1);
-
-}
-
-.btn:nth-child(4):hover {
-  box-shadow: 0px 0px 3px rgba(255, 120, 0, 1);
-  transition: all 0s;
-    -webkit-transition: 0s;
-}
-
-.btn:nth-child(5) {
-  top: 0px;
-  left: 0px;
-  -webkit-transition-delay: 0.1s;
-  transition-delay: 0.1s;
-  box-shadow: 0px 0px 2px rgba(0, 161, 255, 1);
-
-}
-
-.btn:nth-child(5):hover {
-  box-shadow: 0px 0px 3px rgba(255, 120, 0, 1);
-  transition: all 0s;
-    -webkit-transition: 0s;
+  color: #FFAB00;
 }
 
 input#toggle:checked~#show-menu .btn:nth-child(1) {
   background: #000;
   transform: scale(3.5);
   border: .5px solid black;
+  color: black;
+  font-size: 0px;
   opacity: .9;
   /* left: -2px;
   top: -1px; */
@@ -337,6 +281,9 @@ input#toggle:checked~#show-menu .btn:nth-child(1) {
   /* box-shadow: none; */
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
 }
+/* i#menuBtn.fas.active {
+  color: rgba(0, 0, 0, 0);
+} */
 
 input#toggle:checked~#show-menu .btn:nth-child(2) {
   top: -28px;
