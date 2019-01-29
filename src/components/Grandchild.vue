@@ -21,32 +21,11 @@ export default {
     RadialMenu
   },
   props: {
-    A: Number,
-    B: Number,
-    operator: Object,
-    result: Number
+    childCounter: Number
   },
   data() {
     return {
-      isChecked: false,
       selectedOperation: '',
-      operations: [{
-          name: 'Add',
-          symbol: '+'
-        },
-        {
-          name: 'Subtract',
-          symbol: '-'
-        },
-        {
-          name: 'Multiply',
-          symbol: '*'
-        },
-        {
-          name: 'Divide',
-          symbol: '/'
-        }
-      ],
       A: '',
       B: '',
       calculatedResult: ''
@@ -55,30 +34,35 @@ export default {
   methods: {
     setOperator(operator) {
       this.selectedOperation = operator
+      this.$emit('operation', operator)
     }
   },
   computed: {
     result() {
       console.log("this.selectedOperation.name: ", this.selectedOperation.name)
+      this.$emit('inputA', this.A)
+      this.$emit('inputB', this.B)
       switch (this.selectedOperation.name) {
         case "Add":
-          return this.calculatedResult = Number(this.A) + Number(this.B);
+          this.calculatedResult = Number(this.A) + Number(this.B);
           break;
         case "Subtract":
-          return this.calculatedResult = Number(this.A) - Number(this.B);
+          this.calculatedResult = Number(this.A) - Number(this.B);
           break;
         case "Multiply":
-          return this.calculatedResult = Number(this.A) * Number(this.B);
+          this.calculatedResult = Number(this.A) * Number(this.B);
           break;
         case "Divide":
           this.calculatedResult = Number(this.A) / Number(this.B);
           if (!Number.isInteger(this.calculatedResult)) {
-            return this.calculatedResult = (Number(this.A) / Number(this.B)).toFixed(2);
+            this.calculatedResult = (Number(this.A) / Number(this.B)).toFixed(2);
           } else {
-            return this.calculatedResult
+            break;
           }
           break;
       }
+      this.$emit('result', this.calculatedResult)
+      return this.calculatedResult
     }
   }
 }
@@ -98,6 +82,7 @@ export default {
   border: 3px solid #ffb42a;
   border-radius: 3px;
 }
+
 
 .radio {
   cursor: pointer;

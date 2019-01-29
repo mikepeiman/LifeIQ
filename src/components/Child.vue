@@ -3,14 +3,19 @@
     <h2>Child</h2>
     <ul>
       <li>Input A: {{ inputA }}</li>
-      <li>Operator: {{ operator }}</li> 
+      <li>Operation: {{ operation.name }}</li> 
       <li>Input B: {{ inputB }}</li>      
       <li>Result: {{ result }}</li>
     </ul>
     <ul class="calculations-list">
-      <button @click="childCounter++">Add Grandchild Component</button>
-      <li v-for="newChild in childCounter">
-        <Grandchild :addGrandchild="childCounter" />
+      <li>childCounter: {{ childCounter }}</li>
+      <button @click="generateID">Add Grandchild Component</button>
+      <li v-for="child in children" :id="child.id">
+        <Grandchild :childCounter="childCounter" 
+        @operation="operation = $event"
+        @inputA="inputA = $event"
+        @inputB="inputB = $event"
+        @result="result = $event" />
       </li>
     </ul>
     
@@ -24,13 +29,26 @@ export default {
     return {
       inputA: '',
       operator: '',
+      operation: '',
       inputB: '',
       result: '',
-      childCounter: 0
+      childCounter: '',
+      children: [],
+      newID: ''
+      // CalculationListItem: ''
     }
   },
   components: {
     Grandchild
+  },
+  methods: {
+    generateID() {
+      this.childCounter++;
+      this.newID = 'CalculationListItem' + this.childCounter
+      this.children.push({
+        id: this.newID
+      })
+    }
   }
 }
 </script>
