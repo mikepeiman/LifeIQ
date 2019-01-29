@@ -1,5 +1,6 @@
 <template>
 <div>
+  <InputOperation A="inputA" B="inputB" operator="currentOperation" result="result" />
   <div class="holder">
     <form @submit.prevent="addSkill">
       <input type="text" placeholder="Enter a skill..." v-model="newSkill" v-validate="'min:5'" name="skill"></input>
@@ -10,6 +11,7 @@
         </div>
       </transition>
     </form>
+    <InputOperation />
     <ul>
       <transition-group name="list" enter-active-class="animated bounceInUp" leave-active-class="animated bounceOutDown">
         <li v-for="(data, index) in skills" :key='data.skill'>
@@ -23,7 +25,12 @@
 </template>
 
 <script>
+import InputOperation from './../components/InputOperation';
+
 export default {
+  components: {
+    InputOperation
+  },
   data() {
     return {
       minus: true,

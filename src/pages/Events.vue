@@ -1,15 +1,15 @@
 <template>
   <Layout>
-    <RadialMenu />
+    <Parent />
   </Layout>
 </template>
 
 <script>
-import RadialMenu from './../components/RadialMenu';
+import Parent from './../components/Parent';
 
 export default {
   components: {
-    RadialMenu
+    Parent
   }
 }
 </script>

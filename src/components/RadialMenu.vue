@@ -1,5 +1,5 @@
 <template>
-<div class="radial-menu-container" tabindex="0" @keydown="setOperationByKeyDown">
+<div class="radial-menu-container" id="radial-menu" tabindex="0" @keydown="setOperationByKeyDown">
   <div class="menu">
     <input type="checkbox" id="toggle" />
     <label id="show-menu" for="toggle">

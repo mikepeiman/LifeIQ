@@ -9,14 +9,13 @@
     <label for="inputB">Enter another number
       <input tabindex="3" type="number" class="input-widget input" id="inputB" name="input-b" v-model="B">
     </label>
-
   </div>
-      <div class="results-box">= {{ result }}</div>
+  <div class="results-box">= {{ result }}</div>
 </div>
 </template>
 
 <script>
-import RadialMenu from '.././components/RadialMenu';
+import RadialMenu from '~/components/RadialMenu';
 export default {
   components: {
     RadialMenu
@@ -62,20 +61,23 @@ export default {
     result() {
       console.log("this.selectedOperation.name: ", this.selectedOperation.name)
       switch (this.selectedOperation.name) {
-        case "Add": return this.calculatedResult = Number(this.A) + Number(this.B);
-        break;
-        case "Subtract": return this.calculatedResult =  Number(this.A) - Number(this.B);
-        break;
-        case "Multiply": return this.calculatedResult =  Number(this.A) * Number(this.B);
-        break;
-        case "Divide": 
-        this.calculatedResult = Number(this.A) / Number(this.B);
-        if (!Number.isInteger(this.calculatedResult)) {
-          return this.calculatedResult = (Number(this.A) / Number(this.B)).toFixed(2);
-        } else {
-          return this.calculatedResult
-        }
-        break;
+        case "Add":
+          return this.calculatedResult = Number(this.A) + Number(this.B);
+          break;
+        case "Subtract":
+          return this.calculatedResult = Number(this.A) - Number(this.B);
+          break;
+        case "Multiply":
+          return this.calculatedResult = Number(this.A) * Number(this.B);
+          break;
+        case "Divide":
+          this.calculatedResult = Number(this.A) / Number(this.B);
+          if (!Number.isInteger(this.calculatedResult)) {
+            return this.calculatedResult = (Number(this.A) / Number(this.B)).toFixed(2);
+          } else {
+            return this.calculatedResult
+          }
+          break;
       }
     }
   }
@@ -96,6 +98,7 @@ export default {
   border: 3px solid #ffb42a;
   border-radius: 3px;
 }
+
 .radio {
   cursor: pointer;
 }
@@ -112,6 +115,7 @@ export default {
   grid-template-columns: 80% 20%;
   grid-auto-rows: 1;
 }
+
 .flex {
   display: flex;
   justify-content: center;
@@ -119,14 +123,16 @@ export default {
   align-content: space-around;
   align-items: center;
 }
+
 .input-widget {
   padding: 0.5em;
   margin: 0.5em;
   border: none;
-  border-bottom: 1px dashed #00a1ff; 
+  border-bottom: 1px dashed #00a1ff;
   background: none;
   color: #FFAB00;
 }
+
 .input-widget:focus {
   border: none;
   outline: none;
@@ -154,13 +160,14 @@ export default {
   margin: 0 1em 1em 1em;
   background: rgba(50, 75, 125, 0.75);
 }
-:checked + span {
+
+:checked+span {
   background: #fff;
 }
 
-input[type=number]::-webkit-inner-spin-button, 
-input[type=number]::-webkit-outer-spin-button { 
-  -webkit-appearance: none; 
-  margin: 0; 
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }
 </style>

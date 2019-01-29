@@ -1,36 +1,54 @@
 <template>
 <Layout>
 
-  <h1>Calculate</h1>
-  <InputOperation :operator="operator" />
-  <!-- <button @click="logProps" class="v-button">click to log props</button> -->
+<div ref="calculationContainer"></div>
 
+  <h1>Calculate</h1>
+  <button @click="createCalcWidget">Add a calculation</button>
+  <div v-for="i in iterator">
+    <InputOperation :operator="operator" :id="currentId" />
+  </div>
+
+  <CalcList />
 </Layout>
 </template>
 
 <script>
-import InputWidget from './../components/InputWidget';
-import VButton from './../components/VButton';
 import InputOperation from './../components/InputOperation';
+import CalcList from './../components/CalcList';
 
 export default {
   components: {
-    InputWidget,
-    VButton,
-    InputOperation
+    InputOperation,
+    CalcList
   },
   data: function () {
     return {
-      operator: ''
-
+      valueA: 0,
+      valueB: 0,
+      operator: '',
+      result: 0,
+      widgets: [],
+      id: 0,
+      currentId: 0,
+      iterator: []
     }
   },
   methods: {
-    onClickInputOperation(value) {
-      console.log(value)
-    },
-    logProps() {
-      console.log(InputOperation.props)
+    createCalcWidget() {
+      this.id++
+      console.log('id: ', this.id)
+      this.widgets.push({
+        valueA: this.A,
+        valueB: this.B,
+        operator: this.operator,
+        result: this.result
+      })
+    }
+  },
+  computed: {
+    setCurrentId() {
+
     }
   }
 }
